@@ -187,24 +187,27 @@
           <div class="form-row">
             <div class="form-group">
               <label for="name">Your Name</label>
-              <input type="text" id="name" placeholder="Jane Smith" required />
+              <input type="text" id="name" name="name" placeholder="Jane Smith" required />
             </div>
             <div class="form-group">
               <label for="email">Email Address</label>
-              <input type="email" id="email" placeholder="jane@email.com" required />
+              <input type="email" id="email" name="email" placeholder="jane@email.com" required />
             </div>
           </div>
           <div class="form-group">
             <label for="subject">Subject</label>
-            <input type="text" id="subject" placeholder="What's this about?" />
+            <input type="text" id="subject" name="subject" placeholder="What's this about?" />
           </div>
           <div class="form-group">
             <label for="message">Message</label>
-            <textarea id="message" placeholder="Write your message here..." required></textarea>
+            <textarea id="message" name="message" placeholder="Write your message here..." required></textarea>
           </div>
-          <button type="submit" class="btn-send">Send Message</button>
+          <button type="submit" class="btn-send" id="btnSend">Send Message</button>
           <div class="form-success" id="formSuccess">
             Thank you — your message has been sent. I'll be in touch soon.
+          </div>
+          <div class="form-error" id="formError" style="display:none; margin-top:1rem; color:var(--rust); font-family:'Crimson Pro',serif; font-size:0.95rem;">
+            Something went wrong. Please try again or email me directly at cgbwriter@hotmail.com
           </div>
         </form>
       </div>
@@ -253,16 +256,38 @@
       setTimeout(() => el.classList.add('visible'), 150 + i * 100);
     });
 
-    // Form
-    document.getElementById('contactForm').addEventListener('submit', function(e) {
+    // Form — Formspree
+    document.getElementById('contactForm').addEventListener('submit', async function(e) {
       e.preventDefault();
-      const btn = this.querySelector('.btn-send');
-      btn.textContent = 'Sent!';
-      btn.style.background = '#2C7A3A';
-      btn.style.borderColor = '#2C7A3A';
-      btn.style.boxShadow = '4px 4px 0 #1E5228';
-      document.getElementById('formSuccess').style.display = 'block';
-      this.querySelectorAll('input, textarea').forEach(f => f.value = '');
+      const btn = document.getElementById('btnSend');
+      const success = document.getElementById('formSuccess');
+      const error = document.getElementById('formError');
+      success.style.display = 'none';
+      error.style.display = 'none';
+      btn.textContent = 'Sending…';
+      btn.disabled = true;
+
+      try {
+        const res = await fetch('https://formspree.io/f/meenardj', {
+          method: 'POST',
+          headers: { 'Accept': 'application/json' },
+          body: new FormData(this)
+        });
+        if (res.ok) {
+          btn.textContent = 'Sent!';
+          btn.style.background = '#2C7A3A';
+          btn.style.borderColor = '#2C7A3A';
+          btn.style.boxShadow = '4px 4px 0 #1E5228';
+          success.style.display = 'block';
+          this.querySelectorAll('input, textarea').forEach(f => f.value = '');
+        } else {
+          throw new Error('Server error');
+        }
+      } catch {
+        btn.textContent = 'Send Message';
+        btn.disabled = false;
+        error.style.display = 'block';
+      }
     });
   </script>
 </body>
