@@ -600,88 +600,6 @@
       margin: 2.5rem 0;
     }
 
-    /* ── NEWSLETTER ── */
-    #newsletter {
-      padding: 7rem 5vw;
-      background: var(--parchment);
-      position: relative;
-      overflow: hidden;
-    }
-    #newsletter::before {
-      content: '';
-      position: absolute;
-      bottom: -100px; right: -100px;
-      width: 420px; height: 420px;
-      border-radius: 50%;
-      background: var(--tan-light);
-      opacity: 0.35;
-    }
-    #newsletter::after {
-      content: '';
-      position: absolute;
-      top: -70px; left: -70px;
-      width: 300px; height: 300px;
-      border-radius: 50%;
-      background: var(--tan-light);
-      opacity: 0.28;
-    }
-
-    .nl-inner {
-      max-width: 620px;
-      margin: 0 auto;
-      text-align: center;
-      position: relative;
-      z-index: 1;
-    }
-
-    .nl-body {
-      font-family: 'Crimson Pro', serif;
-      font-size: 1.15rem;
-      color: #5A4E3C;
-      line-height: 1.8;
-      margin-bottom: 2.5rem;
-    }
-
-    .nl-form {
-      display: flex;
-      max-width: 460px;
-      margin: 0 auto;
-    }
-    .nl-form input {
-      flex: 1;
-      padding: 0.9rem 1.2rem;
-      border: 2px solid var(--navy);
-      border-right: none;
-      background: var(--cream);
-      font-family: 'Crimson Pro', serif;
-      font-size: 1rem;
-      color: var(--text);
-      outline: none;
-    }
-    .nl-form input::placeholder { color: #9A8E7A; }
-    .nl-form input:focus { border-color: var(--rust); }
-    .nl-form button {
-      font-family: 'Bebas Neue', sans-serif;
-      font-size: 1rem;
-      letter-spacing: 0.1em;
-      color: var(--cream);
-      background: var(--navy);
-      border: 2px solid var(--navy);
-      padding: 0.9rem 1.6rem;
-      cursor: pointer;
-      white-space: nowrap;
-      transition: background 0.25s, border-color 0.25s;
-    }
-    .nl-form button:hover { background: var(--rust); border-color: var(--rust); }
-    .nl-form button:focus-visible { outline: 2px solid var(--rust); outline-offset: 2px; }
-
-    .nl-fine {
-      font-family: 'Crimson Pro', serif;
-      font-size: 0.85rem;
-      color: #9A8E7A;
-      margin-top: 1rem;
-    }
-
     /* ── FOOTER ── */
     footer {
       background: var(--ink);
@@ -878,7 +796,6 @@
     <ul class="nav-links">
       <li><a href="#books">Books</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#newsletter">Newsletter</a></li>
       <li><a href="contact.html">Contact</a></li>
     </ul>
     <a href="#books" class="nav-cta">Browse Books</a>
@@ -889,9 +806,8 @@
       <ul class="nav-mobile-links">
         <li><a href="#books">Books</a></li>
         <li><a href="#about">About</a></li>
-        <li><a href="#newsletter">Newsletter</a></li>
         <li><a href="contact.html">Contact</a></li>
-        </ul>
+            </ul>
       <div class="nav-mobile-cta-row">
         <a href="#books" class="nav-mobile-browse">Browse Books</a>
       </div>
@@ -1125,30 +1041,12 @@
     </div>
   </section>
 
-  <!-- ── NEWSLETTER ── -->
-  <section id="newsletter">
-    <div class="nl-inner">
-      <div class="sec-label reveal" style="justify-content:center;">The Newsletter</div>
-      <h2 class="sec-title reveal d1" style="font-size:clamp(2.4rem,5vw,4rem);">Stay in the Story</h2>
-      <p class="nl-body reveal d2">
-        New chapters, behind-the-scenes notes, reading recommendations, and the occasional secret — delivered to your inbox a few times a year. No noise. Just words worth reading.
-      </p>
-      <div class="nl-form reveal d3">
-        <input type="email" placeholder="your@email.com" aria-label="Email address" />
-        <button type="button">Subscribe</button>
-      </div>
-      <p class="nl-fine reveal d4">No spam, ever. Unsubscribe anytime with one click.</p>
-    </div>
-  </section>
-
   <!-- ── FOOTER ── -->
   <footer id="contact">
     <a href="#" class="ft-logo">Charlie <em>Birkett</em></a>
     <ul class="ft-links">
       <li><a href="#books">Books</a></li>
       <li><a href="#about">About</a></li>
-      <li><a href="#newsletter">Newsletter</a></li>
-      <li><a href="contact.html">Contact</a></li>
     </ul>
     <p class="ft-copy">&copy; 2026 Charlie Birkett. All rights reserved.</p>
   </footer>
