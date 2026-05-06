@@ -645,6 +645,130 @@
       color: #6B6052;
     }
 
+    /* ── NEWSLETTER ── */
+    #newsletter {
+      background: var(--navy);
+      padding: 7rem 5vw;
+      position: relative;
+      overflow: hidden;
+    }
+    #newsletter::before {
+      content: '';
+      position: absolute;
+      top: 0; left: 0; right: 0;
+      height: 4px;
+      background: linear-gradient(90deg, var(--rust) 0%, var(--gold) 40%, var(--tan) 70%, var(--rust) 100%);
+    }
+
+    /* Decorative radial glow */
+    #newsletter::after {
+      content: '';
+      position: absolute;
+      top: -20%;
+      left: 50%;
+      transform: translateX(-50%);
+      width: 700px;
+      height: 500px;
+      background: radial-gradient(ellipse at center, rgba(191,78,43,0.12) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    .newsletter-inner {
+      max-width: 680px;
+      margin: 0 auto;
+      text-align: center;
+      position: relative;
+      z-index: 1;
+    }
+
+    .nl-ornament {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+      color: var(--rust);
+      opacity: 0.55;
+      line-height: 1;
+      margin-bottom: 1.25rem;
+      letter-spacing: 0.3em;
+    }
+
+    .newsletter-inner .sec-label {
+      justify-content: center;
+      color: var(--tan);
+    }
+    .newsletter-inner .sec-label::before { background: var(--tan); }
+
+    .nl-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.8rem, 6vw, 5rem);
+      line-height: 0.95;
+      color: var(--cream);
+      letter-spacing: 0.02em;
+      margin-bottom: 1.5rem;
+    }
+    .nl-title em {
+      color: var(--rust);
+      font-style: normal;
+    }
+
+    .nl-sub {
+      font-family: 'Playfair Display', serif;
+      font-style: italic;
+      font-size: 1.12rem;
+      color: var(--tan-light);
+      line-height: 1.7;
+      margin-bottom: 3rem;
+      max-width: 540px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .nl-form {
+      display: flex;
+      align-items: stretch;
+      max-width: 520px;
+      margin: 0 auto 1.25rem;
+      border: 2px solid var(--tan);
+      box-shadow: 6px 6px 0 var(--rust-dark);
+    }
+
+    .nl-form input[type="email"] {
+      flex: 1;
+      padding: 1rem 1.4rem;
+      border: none;
+      background: rgba(248,244,236,0.08);
+      color: var(--cream);
+      font-family: 'Crimson Pro', serif;
+      font-size: 1.05rem;
+      outline: none;
+    }
+    .nl-form input[type="email"]::placeholder { color: rgba(196,168,120,0.55); }
+    .nl-form input[type="email"]:focus { background: rgba(248,244,236,0.13); }
+
+    .nl-form button {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1rem;
+      letter-spacing: 0.13em;
+      color: var(--cream);
+      background: var(--rust);
+      border: none;
+      border-left: 2px solid var(--tan);
+      padding: 1rem 1.8rem;
+      cursor: pointer;
+      white-space: nowrap;
+      transition: background 0.22s ease, transform 0.15s ease;
+    }
+    .nl-form button:hover { background: var(--rust-dark); }
+    .nl-form button:active { transform: scale(0.97); }
+    .nl-form button:focus-visible { outline: 2px solid var(--tan); outline-offset: 2px; }
+
+    .nl-note {
+      font-family: 'Crimson Pro', serif;
+      font-size: 0.82rem;
+      letter-spacing: 0.1em;
+      color: rgba(196,168,120,0.55);
+      text-transform: uppercase;
+    }
+
     /* ── REVEAL ── */
     .reveal {
       opacity: 0;
@@ -770,9 +894,9 @@
 
       .press-grid { grid-template-columns: 1fr; gap: 2rem; }
 
-      .nl-form { flex-direction: column; }
-      .nl-form input { border-right: 2px solid var(--navy); }
-      .nl-form button { border-top: none; }
+      .nl-form { flex-direction: column; box-shadow: 4px 4px 0 var(--rust-dark); }
+      .nl-form input[type="email"] { border-bottom: 2px solid var(--tan); }
+      .nl-form button { border-left: none; border-top: 2px solid var(--tan); }
 
       footer { flex-direction: column; align-items: flex-start; }
     }
@@ -1041,12 +1165,51 @@
     </div>
   </section>
 
+  <!-- ── NEWSLETTER ── -->
+  <!-- MAILCHIMP: Replace the action URL below with your Mailchimp form action URL.
+       Find it in Mailchimp → Audience → Signup forms → Embedded forms → action="..." -->
+  <section id="newsletter">
+    <div class="newsletter-inner">
+      <div class="nl-ornament reveal">&#10022; &#10022; &#10022;</div>
+      <div class="sec-label reveal">Stay Connected</div>
+      <h2 class="nl-title reveal d1">Join the<br><em>Reader's Circle</em></h2>
+      <p class="nl-sub reveal d2">
+        New releases, behind-the-scenes glimpses, and stories worth sharing — delivered straight to your inbox.
+      </p>
+
+      <form
+        action="https://birkettbooks.us16.list-manage.com/subscribe/post?u=ab56d976373aaab3be7775e59&amp;id=f4a614ae3f&amp;f_id=00eac2e1f0"
+        method="post"
+        target="_blank"
+        class="nl-form reveal d3"
+        novalidate
+      >
+        <input
+          type="email"
+          name="EMAIL"
+          id="nl-email"
+          placeholder="Your email address"
+          autocomplete="email"
+          required
+        />
+        <!-- Mailchimp bot-prevention honeypot — do not remove -->
+        <div style="position:absolute;left:-5000px;" aria-hidden="true">
+          <input type="text" name="b_ab56d976373aaab3be7775e59_f4a614ae3f" tabindex="-1" value="" />
+        </div>
+        <button type="submit">Subscribe</button>
+      </form>
+
+      <p class="nl-note reveal d4">No spam, ever. Unsubscribe at any time.</p>
+    </div>
+  </section>
+
   <!-- ── FOOTER ── -->
   <footer id="contact">
     <a href="#" class="ft-logo">Charlie <em>Birkett</em></a>
     <ul class="ft-links">
       <li><a href="#books">Books</a></li>
       <li><a href="#about">About</a></li>
+      <li><a href="contact.html">Contact</a></li>
     </ul>
     <p class="ft-copy">&copy; 2026 Charlie Birkett. All rights reserved.</p>
   </footer>
@@ -1108,19 +1271,25 @@
       });
     });
 
-    // Newsletter
-    document.querySelector('.nl-form button').addEventListener('click', function() {
-      const input = this.previousElementSibling;
-      if (input.value && input.value.includes('@')) {
-        this.textContent = 'Subscribed!';
-        this.style.background = '#2C7A3A';
-        this.style.borderColor = '#2C7A3A';
-        input.value = '';
-      } else {
-        input.style.borderColor = 'var(--rust)';
-        input.focus();
-      }
-    });
+    // Newsletter — validates before Mailchimp form submission
+    const nlForm = document.querySelector('.nl-form');
+    if (nlForm) {
+      nlForm.addEventListener('submit', function(e) {
+        const input = this.querySelector('input[type="email"]');
+        const btn   = this.querySelector('button[type="submit"]');
+        if (!input.value || !input.value.includes('@')) {
+          e.preventDefault();
+          input.style.borderColor = 'var(--rust)';
+          input.focus();
+          return;
+        }
+        input.style.borderColor = '';
+        btn.textContent = 'Subscribing…';
+        btn.disabled = true;
+        // Re-enable after a moment (the form opens in a new tab)
+        setTimeout(() => { btn.textContent = 'Subscribe'; btn.disabled = false; }, 3000);
+      });
+    }
   </script>
 </body>
 </html>
